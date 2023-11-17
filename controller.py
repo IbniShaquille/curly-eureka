@@ -39,23 +39,31 @@ class MyTopo(Topo):
         self.addLink(switch_residen, router_RS, intfName2='r1-eth2', params2={'ip': default_gateway_4})
 
         # Add link between router
-        self.addLink(router_asrama, router_RS, intfName1='r0-eth3', intfName2='r1-eth3')
+        self.addLink(router_asrama, router_RS, intfName1='r0-eth0', intfName2='r1-eth0', params1={'ip': '192.168.223.121/30'}, params2={'ip': '192.168.223.122/30'})
 
         # Add host
         for i in range(1, 62):
-            host = self.addHost(f'h{i}')
+            host = f'K{i}'
+            ip_addr = f'192.168.223.{i+1}/26'
+            self.addHost(host, ip=ip_addr, defaultRoute=f'via {default_gateway_1[:-3]}')
             self.addLink(host, switch_koas, intfName2=f's1-eth{i}')
 
         for i in range(1, 30):
-            host = self.addHost(f'h{i+61}')
+            host = f'I{i}'
+            ip_addr = f'192.168.223.{i+65}/27'
+            self.addHost(host, ip=ip_addr, defaultRoute=f'via {default_gateway_2[:-3]}')
             self.addLink(host, switch_internship, intfName2=f's2-eth{i}')
 
         for i in range(1, 14):
-            host = self.addHost(f'h{i+90}')
+            host = f'S{i}'
+            ip_addr = f'192.168.223.{i+97}/28'
+            self.addHost(host, ip=ip_addr, defaultRoute=f'via {default_gateway_3[:-3]}')
             self.addLink(host, switch_spesialis, intfName2=f's3-eth{i}')
 
         for i in range(1, 6):
-            host = self.addHost(f'h{i+103}')
+            host = f'R{i}'
+            ip_addr = f'192.168.223.{i+113}/29'
+            self.addHost(host, ip=ip_addr, defaultRoute=f'via {default_gateway_4[:-3]}')
             self.addLink(host, switch_residen, intfName2=f's4-eth{i}')
 
 topos = {'mytopo': (lambda: MyTopo())}
