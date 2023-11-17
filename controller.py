@@ -46,24 +46,24 @@ class MyTopo(Topo):
             host = f'K{i}'
             ip_addr = f'192.168.223.{i+1}/26'
             self.addHost(host, ip=ip_addr, defaultRoute=f'via {default_gateway_1[:-3]}')
-            self.addLink(host, switch_koas, intfName2=f's1-eth{i}')
+            self.addLink(host, switch_koas)
 
         for i in range(1, 30):
             host = f'I{i}'
             ip_addr = f'192.168.223.{i+65}/27'
             self.addHost(host, ip=ip_addr, defaultRoute=f'via {default_gateway_2[:-3]}')
-            self.addLink(host, switch_internship, intfName2=f's2-eth{i}')
+            self.addLink(host, switch_internship)
 
         for i in range(1, 14):
             host = f'S{i}'
             ip_addr = f'192.168.223.{i+97}/28'
             self.addHost(host, ip=ip_addr, defaultRoute=f'via {default_gateway_3[:-3]}')
-            self.addLink(host, switch_spesialis, intfName2=f's3-eth{i}')
+            self.addLink(host, switch_spesialis)
 
         for i in range(1, 6):
             host = f'R{i}'
             ip_addr = f'192.168.223.{i+113}/29'
             self.addHost(host, ip=ip_addr, defaultRoute=f'via {default_gateway_4[:-3]}')
-            self.addLink(host, switch_residen, intfName2=f's4-eth{i}')
+            self.addLink(host, switch_residen)
 
 topos = {'mytopo': (lambda: MyTopo())}
