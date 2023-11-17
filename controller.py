@@ -30,14 +30,14 @@ class MyTopo(Topo):
         switch_spesialis = self.addSwitch('s3')
         switch_residen = self.addSwitch('s4')
 
+        # Add link between router
+        self.addLink(router_asrama, router_RS, intfName1='r0-eth0', intfName2='r1-eth0', params1={'ip': '192.168.223.121/30'}, params2={'ip': '192.168.223.122/30'})
+        
         # Add link per switch
         self.addLink(switch_koas, router_asrama, intfName2='r0-eth1', params2={'ip': default_gateway_1})
         self.addLink(switch_internship, router_asrama, intfName2='r0-eth2', params2={'ip': default_gateway_2})
         self.addLink(switch_spesialis, router_RS, intfName2='r1-eth1', params2={'ip': default_gateway_3})
         self.addLink(switch_residen, router_RS, intfName2='r1-eth2', params2={'ip': default_gateway_4})
-
-        # Add link between router
-        self.addLink(router_asrama, router_RS, intfName1='r0-eth0', intfName2='r1-eth0', params1={'ip': '192.168.223.121/30'}, params2={'ip': '192.168.223.122/30'})
 
         # Add host
         for i in range(1, 62):
