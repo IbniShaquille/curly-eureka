@@ -15,8 +15,6 @@ class LinuxRouter(Node):
 
 class MyTopo(Topo):
     def build(self):
-        num_switch = 4
-
         default_gateway_1 = '192.168.223.1/26'
         default_gateway_2 = '192.168.223.65/27'
         default_gateway_3 = '192.168.223.97/28'
